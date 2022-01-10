@@ -14,6 +14,8 @@ const onSelectTaskList = async function (event) {
 }
 
 const fetchTasklist = async () => {
+    createListName.value = "";
+
     let form = document.getElementById('tasklistForm');
     form.innerHTML = '';
     if (user) {
@@ -82,7 +84,15 @@ const updateTaskList = async () => {
                 name: name
             })
         });
-        fetchTasklist();
+
+        if (updateListRequest.ok) {
+            titleDiary.innerHTML = name;
+            fetchTasklist();
+        } else {
+            alert("Fail to update. Please select a diary list.")
+        }
+    } else {
+        alert("Please select a diary list to update")
     }
 }
 
@@ -95,8 +105,22 @@ const deleteTaskList = async () => {
                     ...user
                 }
             })
+
+            if (deleteListRequest.ok) {
+                updateListname.value = "";
+                tasks.innerHTML = "";
+
+                updateTaskname.value="";
+                updateTaskDescription.value="";
+
+                titleDiary.innerHTML = "Title of Today";
+                fetchTasklist();
+            } else {
+                alert("Fail to delete. Please select a diary list to delete.")
+            }
         }
-        fetchTasklist();
+    } else {
+        alert("Please select a diary list to delete.")
     }
 }
 
@@ -108,6 +132,9 @@ const onSelectTask = async function (event) {
 }
 
 const refreshTasks = async () => {
+    createTaskname.value = "";
+    createTaskDescription.value = "";
+
     if (selectedTasklist) {
         const taskRequest = await fetch(`${serverUrl}/task_lists/${selectedTasklist}/todos`, {
             headers: {
@@ -117,7 +144,7 @@ const refreshTasks = async () => {
         const tasks = await taskRequest.json();
         console.log(tasks);
 
-        const titleDiary = document.getElementById('title-diary')
+        const titleDiary = document.getElementById('titleDiary')
         titleDiary.innerHTML = taskListHash[selectedTasklist].name;
 
         const form = document.getElementById('tasks');
@@ -140,11 +167,11 @@ const refreshTasks = async () => {
             let label = document.createElement("label");
             label.setAttribute("class", "form-check-label btn btn-outline-secondary");
             label.setAttribute("for", input.id);
-            label.innerHTML =`${task.name}`;
+            label.innerHTML = `${task.name}`;
             formCheck.appendChild(label);
 
             let p = document.createElement("p")
-            p.innerHTML =  `${task.description ?? ""}`;
+            p.innerHTML = `${task.description ?? ""}`;
             label.appendChild(p);
 
             form.appendChild(formCheck)
@@ -170,20 +197,29 @@ const createTask = async () => {
 }
 
 const updateTask = async () => {
-    const name = document.getElementById('updateTaskname').value;
-    const description = document.getElementById('updateTaskDescription').value;
-    const createTaskRequest = await fetch(`${serverUrl}task_lists/${selectedTasklist}/todos/${selectedTask}`, {
-        method: 'PUT',
-        headers: {
-            ...user,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: name,
-            description: description
-        })
-    });
-    refreshTasks();
+    if (selectedTask) {
+        const name = document.getElementById('updateTaskname').value;
+        const description = document.getElementById('updateTaskDescription').value;
+        const createTaskRequest = await fetch(`${serverUrl}task_lists/${selectedTasklist}/todos/${selectedTask}`, {
+            method: 'PUT',
+            headers: {
+                ...user,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                description: description
+            })
+        });
+
+        if (createTaskRequest.ok) {
+            refreshTasks();
+        } else {
+            alert("Fail to update. Please select a diary.")
+        }
+    } else {
+        alert("Please select a diary to update.")
+    }
 }
 
 const deleteTask = async () => {
@@ -195,8 +231,17 @@ const deleteTask = async () => {
                     ...user
                 }
             });
-            refreshTasks();
+
+            if (deleteTaskRequest.ok) {
+                updateTaskname.value="";
+                updateTaskDescription.value="";
+                refreshTasks();
+            } else {
+                alert("Fail to delete. Please select a diary.")
+            }
         }
+    } else {
+        alert("Please select a diary to delete.")
     }
 }
 
@@ -206,13 +251,14 @@ function onLoadInit() {
             user = JSON.parse(localStorage.getItem('user'));
             document.getElementById('currentUser').innerHTML = user.uid;
             fetchTasklist();
-        } catch {}
+        } catch {
+        }
     }
 }
 
 // SHARE
 const fetchUsers = async () => {
-    const fetchUserRequest = await fetch(`${serverUrl}/users`,{
+    const fetchUserRequest = await fetch(`${serverUrl}/users`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -246,12 +292,12 @@ const fetchUsers = async () => {
     }
 }
 
-const onSelectUser = async function(event) {
+const onSelectUser = async function (event) {
     selectedUser = event.target.value;
 }
 
-const shareTask = async() => {
-    const createListRequest = await fetch(`${serverUrl}/task_lists/${selectedTasklist}/share`,{
+const shareTask = async () => {
+    const createListRequest = await fetch(`${serverUrl}/task_lists/${selectedTasklist}/share`, {
         method: 'POST',
         headers: {
             ...user,

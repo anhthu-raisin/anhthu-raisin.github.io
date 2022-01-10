@@ -48,8 +48,10 @@
             align-items: center;
         }
     </style>
+
+    <script src="assets/js/user_account.js"></script>
 </head>
-<body>
+<body onload="onLoadInit()">
 <div class="container">
     <div class="row">
         <div class="col-sm-3 col-setting">
@@ -60,31 +62,31 @@
         </div>
         <div class="col-sm-9">
             <h4>Account</h4>
-            <form action="">
+            <form>
                 <div class="form-group">
-                    <label class="form-label" for="customFile">Choose your avatar</label>
-                    <input type="file" class="form-control" id="customFile" />
+                    <label class="form-label" for="firstname">First name</label>
+                    <input type="text" class="form-control" id="firstname"/>
                 </div>
 
                 <div class="form-group">
-                    <label for="name">User name:</label>
-                    <input type="text" class="form-control" value="Le Thi Anh Thu" id="name">
+                    <label for="lastname">Last name</label>
+                    <input type="text" class="form-control" id="lastname">
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email address:</label>
-                    <input type="email" class="form-control" value="thu.le190203@vnuk.edu.vn" id="email">
+                    <input type="email" class="form-control" id="email" readonly>
                 </div>
 
                 <div class="form-group">
-                    <a href="#">Change password</a>
-                </div>
-
-                <div class="form-group btn-select">
-                    <a type="button" class="btn btn-primary">Save</a>
-                    <a type="button" class="btn btn-secondary" href="home_page.html">Cancel</a>
+                    <a href="change_pass.html">Change password</a>
                 </div>
             </form>
+
+            <div class="form-group btn-select">
+                <button class="btn btn-primary col-sm-6" onclick="updateUserName()">Save</button>
+                <a type="button" class="btn btn-secondary col-sm-6" href="home_page.html">Cancel</a>
+            </div>
         </div>
     </div>
 </div>

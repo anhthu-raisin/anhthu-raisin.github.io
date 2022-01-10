@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>My Diary</title>
 
-
     <!--BOOSTRAP-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
           integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -34,180 +33,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,800;1,400;1,800&display=swap"
           rel="stylesheet">
-
-    <style>
-        * {
-            font-family: 'EB Garamond', serif;
-            font-weight: bolder;
-        }
-
-        body {
-            background-color: white;
-        }
-
-        /* NAVIGATION BAR */
-        nav {
-            background-color: #f1a33b;
-        }
-
-        #name-web {
-            color: white;
-        }
-
-        nav i:hover {
-            background-color: rgba(248, 248, 255, 0.19);
-            border-radius: 5px;
-        }
-
-        nav i {
-            font-size: 1em;
-            color: white;
-            padding: 5px;
-        }
-
-        nav .bi-person-circle {
-            font-size: 1.2em;
-        }
-
-        nav #navbarNav {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        nav .nav-dropdown a {
-            color: black;
-            font-family: 'EB Garamond', serif;
-            font-size: 1em;
-        }
-
-        nav .nav-dropdown a span {
-            padding-left: 7px;
-            font-weight: normal;
-        }
-
-
-        /* CONTENT */
-        /* Aside Bar */
-
-        .aside-menu {
-            text-transform: uppercase;
-            float: left;
-            background-color: #f6f5f1;
-            padding: 20px;
-            height: 100%;
-            position: fixed;
-        }
-
-        .aside-menu p {
-            font-size: 0.8em;
-        }
-
-        .aside-menu p i {
-            margin-right: 15px;
-            font-size: 1em;
-        }
-
-        .aside-menu .status {
-            font-size: 0.8em;
-        }
-
-        .aside-menu .status {
-            font-size: 0.8em;
-        }
-
-        .aside-menu li {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            margin-bottom: 10px;
-            font-size: 0.8em;
-        }
-
-        .aside-menu span {
-            padding-left: 15px;
-        }
-
-        /* Main Content */
-        .main-content {
-            width: 75%;
-            float: right;
-            padding: 30px;
-            border-radius: 15px;
-            height: 36em;
-            font-size: 0.8em;
-        }
-
-        .today-update {
-            height: 100%;
-            width: 100%;
-            overflow-y: scroll;
-        }
-
-        .today-update .row {
-            border: black solid 1px;
-            border-radius: 7px;
-            margin: 20px 40px 0px 40px;
-            background-color: white;
-            padding: 10px 0 10px;
-        }
-
-        .col-sm-2 {
-            border-right: black solid 1px;
-        }
-
-        .title {
-            border-bottom: black solid 1px;
-        }
-
-        .col-sm-2 i {
-            font-size: 1em;
-        }
-
-        .today-update .bi-three-dots {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .status-dropdown .bi-three-dots {
-            top: 50%;
-            left: 50%;
-        }
-
-        .today-update-dropdown, .nav-dropdown, .status-dropdown {
-            text-transform: none;
-        }
-
-        @media screen and (max-width: 990px) {
-            .aside-menu {
-                display: grid;
-                grid-template-columns: 1fr 2fr 1fr;
-                margin-bottom: 10px;
-                font-size: 0.8em;
-                height: 50px;
-                float: none;
-            }
-
-            .aside-menu ul {
-                display: grid;
-                grid-template-columns: 1fr 2fr 1fr;
-            }
-
-            .main-content {
-                float: none;
-            }
-
-            .today-update {
-                overflow-y: unset;
-            }
-
-            .aside-menu {
-                position: unset;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/home.css">
+    <script src="assets/js/home.js"></script>
 </head>
-<body>
+<body onload="onLoadInit()">
 <header>
     <nav class="navbar">
         <div class="container-fluid">
@@ -228,37 +57,27 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <span id="time" style="text-align: right">hi</span>
-                                </div>
-                                <div class="modal-body">
-                                    ...
+                                    <h6 class="modal-title" id="exampleModalLabel">
+                                        <input type="text" id="createListName" placeholder="Title"
+                                               style="border: none">
+                                    </h6>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-warning bi bi-tag" data-dismiss="modal"
-                                            style="color: white">Add
-                                        status
+                                    <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary" data-dismiss="modal"
+                                            onclick="createTaskList()">
+                                        Add diary
                                     </button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <button type="button" class="btn btn-primary">Add diary</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="nav-item">
-                    <button class="btn nav-link" href="#"><i class="bi bi-bell"></i></button>
-                </div>
                 <div class="nav-item nav-user">
-                    <div class="nav-dropdown">
-                        <button type="button" class="btn" data-bs-toggle="dropdown"><i
-                                class="bi bi-person-circle"></i></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item bi-gear" href="user_account.html"><span>Setting</span></a></li>
-                            <li><a class="dropdown-item bi-box-arrow-right" href="index.html"><span>Logout</span></a>
-                            </li>
-                        </ul>
-                    </div>
+                    <a href="user_account.html" type="button" class="btn nav-link bi bi-person"></a>
+                </div>
+                <div class="nav-item">
+                    <a href="index.html" type="button" class="btn nav-link bi bi-box-arrow-right"></a>
                 </div>
             </div>
         </div>
@@ -266,279 +85,114 @@
 </header>
 
 <main>
+    <!--  TASK LISTS  -->
     <div class="aside-menu">
-        <p><i class="bi bi-calendar2-event"></i>Today</p>
-        <p><i class="bi bi-calendar3-range"></i>Calendar</p>
-        <div class="status" style="padding: 15px 0 15px">
-            <i class="dropdown-toggle"></i>
-            <span>Status</span>
-<!--            <div class="add-status">-->
-<!--                &lt;!&ndash; Button trigger modal &ndash;&gt;-->
-<!--                <button type="button" class="btn nav-link" data-toggle="modal" data-target="#addStatus">-->
-<!--                    <i class="bi bi-plus-lg"></i>-->
-<!--                </button>-->
+        <div class="container">
+            <div class="form-group">
+                <label for="updateListname" style="text-transform: none">Diary Lists Name</label>
+                <input class="form-control" type='text' id='updateListname'/>
+            </div>
 
-<!--                &lt;!&ndash; Modal &ndash;&gt;-->
-<!--                <div class="modal fade" id="addStatus" tabindex="-1" role="dialog"-->
-<!--                     aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-<!--                    <div class="modal-dialog" role="document">-->
-<!--                        <div class="modal-content">-->
-<!--                            <div class="modal-header">-->
-<!--                                <h5 class="modal-title" id="addStatusLabel">Add Status</h5>-->
-<!--                            </div>-->
-<!--                            <div class="modal-body">-->
+            <div class="form-group">
+                <input class="btn btn-primary" type="button" onclick="updateTaskList()" value="Update"/>
+                <input class="btn btn-danger" type="button" onclick="deleteTaskList()" value="Delete"/>
+            </div>
 
-<!--                            </div>-->
-<!--                            <div class="modal-footer">-->
-<!--                                <button type="button" class="btn btn-primary" data-dismiss="modal"-->
-<!--                                        style="color: white">Add-->
-<!--                                </button>-->
-<!--                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <!--    TASK LISTS   -->
+            <div class="form-group" style="margin-top: 30px">
+                <input id="myDiaryList" class="btn btn-outline-dark" type="button" onclick="fetchTasklist()"
+                       value="View Diary Lists"
+                       style="font-weight: bold; padding: 5px 10px 5px 10px"/>
+            </div>
+            <div class="form-group">
+                <form name='tasklistForm' id='tasklistForm'>
+
+                </form>
+            </div>
+
+            <!--      USERS      -->
+            <div class="form-group" style="margin-top: 30px">
+                <input id="my-friends" class="btn btn-outline-dark" type="button" onclick="fetchUsers()"
+                       value="My Friends"
+                       style="font-weight: bold; padding: 5px 10px 5px 10px"/>
+                <input class="btn btn-success" type="button" onclick="shareTask()" value="Share"/>
+            </div>
+            <div class="form-group">
+                <form id="users">
+
+                </form>
+            </div>
         </div>
-        <ul style="list-style-type: none;">
-            <li>
-                <i class="bi bi-emoji-frown"></i>
-                <span>Sad</span>
-                <div class="status-dropdown">
-                    <button type="button" class="btn bi bi-three-dots" data-bs-toggle="dropdown"></button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Rename status</a></li>
-                        <li><a class="dropdown-item" href="#">Change emoji</a></li>
-                        <li><a class="dropdown-item" href="#">Delete status</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <i class="bi bi-emoji-laughing"></i>
-                <span>Happy</span>
-                <div class="status-dropdown">
-                    <button type="button" class="btn bi bi-three-dots" data-bs-toggle="dropdown"></button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Rename status</a></li>
-                        <li><a class="dropdown-item" href="#">Change emoji</a></li>
-                        <li><a class="dropdown-item" href="#">Delete status</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <i class="bi bi-emoji-sunglasses"></i>
-                <span>Cool</span>
-                <div class="status-dropdown">
-                    <button type="button" class="btn bi bi-three-dots" data-bs-toggle="dropdown"></button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Rename status</a></li>
-                        <li><a class="dropdown-item" href="#">Change emoji</a></li>
-                        <li><a class="dropdown-item" href="#">Delete status</a></li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
     </div>
+
+    <!--  TODOS  -->
     <div class="container main-content">
         <div class="today-title">
-            <div style="border-bottom: black solid 1px; text-transform: uppercase">
-                <span>Title of Today <i class="bi bi-pencil-square"></i></span>
-                <i class="bi bi-sort-down" style="float: right; font-size: 1em; font-style: normal;"><span
-                        style="padding-left: 10px;">Sort</span></i>
+            <div style="border-bottom: black solid 1px; padding-bottom: 15px">
+                <span style="text-transform: uppercase; font-size: 0.9em" id="title-diary">Title of Diary</span>
+
+                <!-- Button trigger modal -->
+                <span type="button" class="btn btn-warning" data-toggle="modal" data-target="#addNewDiary"
+                      style="float: right; padding: 3px 10px 5px 10px; margin: 0 20px 0 0; font-weight: bold;">
+                        Add New
+                </span>
+
+                <!-- Modal -->
+                <div class="modal fade" id="addNewDiary" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="modal-title" id="addNewDiaryLabel">
+                                    <input type="text" id="createTaskname" placeholder="Title" style="border: none">
+                                </h6>
+                                <span class="time" style="text-align: right"></span>
+                            </div>
+                            <div class="modal-body">
+                                <textarea type="text" id="createTaskDescription" name="paragraph_text" cols="50"
+                                          rows="10"
+                                          placeholder="How was your date?" style="width: 100%">
+                                </textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary" onclick="createTask()"
+                                        data-dismiss="modal">Add diary
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <p id="date-time" style="width: 100%; text-align: right"></p>
         </div>
         <div class="today-update">
-            <div class="row">
-                <div class="col-sm-2">
-                    <div>
-                        <i class="bi bi-emoji-frown"></i>
-                        <i class="bi bi-emoji-laughing"></i>
-                        <i class="bi bi-emoji-sunglasses"></i>
-                    </div>
-                    <div>14:56</div>
+            <div class="container">
+                <!--        UPDATE TASK FORM        -->
+                <div class="form-group">
+                    <label for="updateTaskname">Diary Name</label>
+                    <input class="form-control" type='text' id='updateTaskname'/>
                 </div>
-                <div class="col-sm-9">
-                    <div class="title">Title</div>
-                    <div class="description">description</div>
+
+                <div class="form-group">
+                    <label for="updateTaskDescription">Diary Description</label>
+                    <input class="form-control" type='text' id='updateTaskDescription'/>
                 </div>
-                <div class="col-sm-1">
-                    <div class="today-update-dropdown">
-                        <button type="button" class="btn bi bi-three-dots" data-bs-toggle="dropdown"></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                            <li><a class="dropdown-item" href="#">Share</a></li>
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                        </ul>
-                    </div>
+
+                <div class="form-group">
+                    <input class="btn btn-primary" type="button" onclick="updateTask()" value="Update"/>
+                    <input class="btn btn-danger" type="button" onclick="deleteTask()" value="Delete"/>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">
-                    <div>
-                        <i class="bi bi-emoji-frown"></i>
-                        <i class="bi bi-emoji-laughing"></i>
-                        <i class="bi bi-emoji-sunglasses"></i>
-                    </div>
-                    <div>14:56</div>
+
+                <div class="form-group">
+                    <h6 style="text-align: center">----- View your diary below -----</h6>
                 </div>
-                <div class="col-sm-9">
-                    <div class="title">Title</div>
-                    <div class="description">description</div>
-                </div>
-                <div class="col-sm-1">
-                    <div class="today-update-dropdown">
-                        <button type="button" class="btn bi bi-three-dots" data-bs-toggle="dropdown"></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                            <li><a class="dropdown-item" href="#">Share</a></li>
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">
-                    <div>
-                        <i class="bi bi-emoji-frown"></i>
-                        <i class="bi bi-emoji-laughing"></i>
-                        <i class="bi bi-emoji-sunglasses"></i>
-                    </div>
-                    <div>14:56</div>
-                </div>
-                <div class="col-sm-9">
-                    <div class="title">Title</div>
-                    <div class="description">description</div>
-                </div>
-                <div class="col-sm-1">
-                    <div class="today-update-dropdown">
-                        <button type="button" class="btn bi bi-three-dots" data-bs-toggle="dropdown"></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                            <li><a class="dropdown-item" href="#">Share</a></li>
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">
-                    <div>
-                        <i class="bi bi-emoji-frown"></i>
-                        <i class="bi bi-emoji-laughing"></i>
-                        <i class="bi bi-emoji-sunglasses"></i>
-                    </div>
-                    <div>14:56</div>
-                </div>
-                <div class="col-sm-9">
-                    <div class="title">Title</div>
-                    <div class="description">description</div>
-                </div>
-                <div class="col-sm-1">
-                    <div class="today-update-dropdown">
-                        <button type="button" class="btn bi bi-three-dots" data-bs-toggle="dropdown"></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                            <li><a class="dropdown-item" href="#">Share</a></li>
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">
-                    <div>
-                        <i class="bi bi-emoji-frown"></i>
-                        <i class="bi bi-emoji-laughing"></i>
-                        <i class="bi bi-emoji-sunglasses"></i>
-                    </div>
-                    <div>14:56</div>
-                </div>
-                <div class="col-sm-9">
-                    <div class="title">Title</div>
-                    <div class="description">description</div>
-                </div>
-                <div class="col-sm-1">
-                    <div class="today-update-dropdown">
-                        <button type="button" class="btn bi bi-three-dots" data-bs-toggle="dropdown"></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                            <li><a class="dropdown-item" href="#">Share</a></li>
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">
-                    <div>
-                        <i class="bi bi-emoji-frown"></i>
-                        <i class="bi bi-emoji-laughing"></i>
-                        <i class="bi bi-emoji-sunglasses"></i>
-                    </div>
-                    <div>14:56</div>
-                </div>
-                <div class="col-sm-9">
-                    <div class="title">Title</div>
-                    <div class="description">description</div>
-                </div>
-                <div class="col-sm-1">
-                    <div class="today-update-dropdown">
-                        <button type="button" class="btn bi bi-three-dots" data-bs-toggle="dropdown"></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                            <li><a class="dropdown-item" href="#">Share</a></li>
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">
-                    <div>
-                        <i class="bi bi-emoji-frown"></i>
-                        <i class="bi bi-emoji-laughing"></i>
-                        <i class="bi bi-emoji-sunglasses"></i>
-                    </div>
-                    <div>14:56</div>
-                </div>
-                <div class="col-sm-9">
-                    <div class="title">Title</div>
-                    <div class="description">description</div>
-                </div>
-                <div class="col-sm-1">
-                    <div class="today-update-dropdown">
-                        <button type="button" class="btn bi bi-three-dots" data-bs-toggle="dropdown"></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                            <li><a class="dropdown-item" href="#">Share</a></li>
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2">
-                    <div>
-                        <i class="bi bi-emoji-frown"></i>
-                        <i class="bi bi-emoji-laughing"></i>
-                        <i class="bi bi-emoji-sunglasses"></i>
-                    </div>
-                    <div>14:56</div>
-                </div>
-                <div class="col-sm-9">
-                    <div class="title">Title</div>
-                    <div class="description">description</div>
-                </div>
-                <div class="col-sm-1">
-                    <div class="today-update-dropdown">
-                        <button type="button" class="btn bi bi-three-dots" data-bs-toggle="dropdown"></button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Edit</a></li>
-                            <li><a class="dropdown-item" href="#">Share</a></li>
-                            <li><a class="dropdown-item" href="#">Delete</a></li>
-                        </ul>
-                    </div>
+
+                <!--        TASKS        -->
+                <div class="form-group tasks">
+                    <form id="tasks">
+                    </form>
                 </div>
             </div>
         </div>
@@ -550,7 +204,7 @@
     var time = today.getHours() + ":" + today.getMinutes();
     var dateTime = date + ' ' + time;
     document.getElementById("date-time").innerHTML = dateTime;
-    document.getElementById("time").innerHTML = time;
+    document.getElementsByClassName("time").innerHTML = time;
 </script>
 </body>
 </html>
